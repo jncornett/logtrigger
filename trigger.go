@@ -40,13 +40,3 @@ func (a ShellAction) Act(line map[string]string) error {
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
 }
-
-func sub(s string, vals map[string]string) string {
-	return subRegexp.ReplaceAllStringFunc(s, func(m string) string {
-		return vals[subRegexp.FindStringSubmatch(m)[1]]
-	})
-}
-
-var (
-	subRegexp = regexp.MustCompile(`\$\{(\w*)\}`)
-)
